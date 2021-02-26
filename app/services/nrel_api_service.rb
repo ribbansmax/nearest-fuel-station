@@ -5,7 +5,9 @@ class NrelApiService
       #   f.params['location'] = location
       # end
 
-      response = Faraday.new("https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json?api_key=z05CI9wA2eIqI4alzu1MlzA4piredZlOvqzyVpQO&location=#{location}").get
+      response = Faraday.new("https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json?api_key=z05CI9wA2eIqI4alzu1MlzA4piredZlOvqzyVpQO").get do |f|
+        f.params['location'] = location
+      end
       data = parse(response)[:fuel_stations][0]
     end
 
